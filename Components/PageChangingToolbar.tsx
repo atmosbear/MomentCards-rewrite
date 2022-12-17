@@ -9,4 +9,9 @@ export function Toolbar() {
         <button onClick={() => changeToPage("study")} id="study-button">Study</button>
         <button onClick={() => changeToPage("options")}>Options</button>
     </div>)
+			// "panel.border": "",
+			// "panel.dropBackground": "",
+			// "panelTitle.activeBorder": "",
+			// "panelTitle.activeForeground": "",
+			// "panelTitle.inactiveForeground": "",
 }

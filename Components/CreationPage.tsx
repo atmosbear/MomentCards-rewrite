@@ -16,7 +16,7 @@ export default function CreationPage(props: CreationPageProps) {
     }
     function addCurrentDeckCardsToScreen() {
         cards.forEach(card => {
-            onScreenCards.push(<div key={card.front + card.back + card.dueDateEpoch}>F: {card.front} / B: {card.back} / D: I am due at an epoch of {card.dueDateEpoch}</div>)
+            onScreenCards.push(<div key={card.front + card.back + card.dueDateMS}>F: {card.front} / B: {card.back} / D: I am due at an epoch of {card.dueDateMS}</div>)
         })
     }
     let onScreenCards: JSX.Element[] = []

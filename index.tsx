@@ -11,6 +11,7 @@ r.render(<PageHolder deck={deck}></PageHolder>)
 function createEvents() {
     let studyToolbarButton = document.getElementById("study-button")!
     studyToolbarButton.addEventListener("a new card is due", () => {
-        studyToolbarButton.innerText = "Study " + deck.getDues()
+        let numDue = deck.getDues()
+        studyToolbarButton.innerText = numDue > 0 ? "Study (" + numDue + ")" : "Study"
     })
 }
