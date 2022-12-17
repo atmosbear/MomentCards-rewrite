@@ -8,7 +8,7 @@ export class Card {
     ) {}
 }
 
-function ms(time?: {days?: number, hours?: number, minutes?: number, seconds?: number}, fromWhenMS = Date.now()) {
+export function ms(time?: {days?: number, hours?: number, minutes?: number, seconds?: number}, fromWhenMS = Date.now()) {
     time = time ?? {}
     let d = time.days ?? 0
     let h = time.hours ?? 0
@@ -22,7 +22,7 @@ function ms(time?: {days?: number, hours?: number, minutes?: number, seconds?: n
     return s2ms + m2ms + h2ms + d2ms + ms + fromWhenMS
 }
 
-function nowMS() {
+export function nowMS() {
     return ms()
 }
 
@@ -30,17 +30,17 @@ export class Deck {
     constructor(
         public name: string,
         public cards: Card[] = [],
+        private dues: Card[] = []
     ) {}
     createCard(card: Card) {
         this.cards.push(card)
     }
-    getDues(): number {
-        let dues = 0
+    updateAndReturnDues(): Card[] {
         this.cards.forEach(card => {
-            if (card.dueDateMS < nowMS()) {
-                dues++
+            if (card.dueDateMS < nowMS() && !this.dues.includes(card)) {
+                this.dues.push(card)
             }
         }) 
-        return dues
+        return this.dues
     }
 }
