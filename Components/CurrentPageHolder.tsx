@@ -1,3 +1,4 @@
+import CreationPage from './CreationPage'
 import React from 'react'
 
 type CurrentPageProps = {
@@ -6,7 +7,7 @@ type CurrentPageProps = {
 
 export default function CurrentPage(props: CurrentPageProps) {
     if (props.pageName === "create") {
-        return <div>the page name is create</div>
+        return <CreationPage></CreationPage>
     } else if (props.pageName === "study") {
         return <div>Sorry, the study page is not ready yet.</div>
     } else {

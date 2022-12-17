@@ -1,4 +1,4 @@
-import CurrentPage from './CurrentPage'
+import CurrentPage from './CurrentPageHolder'
 import React, { useState } from "react";
 import { Toolbar } from "./PageChangingToolbar";
 
