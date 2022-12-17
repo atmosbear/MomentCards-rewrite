@@ -7,3 +7,10 @@ let deck = new Deck("Default")
 deck.createCard(new Card("I am the front of the card", "I am the back of the card", 0))
 let r = createRoot(document.getElementById("root")!)
 r.render(<PageHolder deck={deck}></PageHolder>)
+
+function createEvents() {
+    let studyToolbarButton = document.getElementById("study-button")!
+    studyToolbarButton.addEventListener("a new card is due", () => {
+        studyToolbarButton.innerText = "Study " + deck.getDues()
+    })
+}
