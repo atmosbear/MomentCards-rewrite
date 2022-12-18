@@ -36,12 +36,9 @@ export class Deck {
     updateAndReturnDues(): Card[] {
         this.cards.forEach(card => {
             if (card.dueDateMS <= nowMS()) {
-                // console.log("this is", this)
-                // console.log(this.dues)
                 if (!this.dues.includes(card)) {
                     this.dues.push(card)
                     window.dispatchEvent(new CustomEvent("the due cards changed"))
-                    console.log("ADDED")
                 }
             }
         })

@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Toolbar } from "./PageChangingToolbar";
 import { Deck } from '../models';
 
-// deck.createCard(new Card("I am the front of the card", "I am the back of the card", nowMS()))
 export let deck = new Deck("Default")
 
 function createEvents() {
@@ -19,12 +18,9 @@ function createEvents() {
         }
     });
 }
-createEvents();
-let oldNumDues = -1;
 function checkForChangedDues() {
     let studyToolbarButton = document.getElementById("study-button")! as HTMLButtonElement;
     if (studyToolbarButton) {
-        // window.dispatchEvent(new CustomEvent("the due cards changed"));
         let updatedDues = deck.updateAndReturnDues()
         if (updatedDues.length !== oldNumDues) {
             window.dispatchEvent(new CustomEvent("the due cards changed"))
@@ -36,7 +32,6 @@ function checkForChangedDues() {
     }
     requestAnimationFrame(checkForChangedDues);
 }
-checkForChangedDues();
 
 export function PageHolder() {
     let [pageName, setPageName] = useState("create")
@@ -48,3 +43,7 @@ export function PageHolder() {
         <CurrentPage pageName={pageName} deck={deck}></CurrentPage>
     </div>
 }
+
+createEvents();
+let oldNumDues = -1;
+checkForChangedDues();
