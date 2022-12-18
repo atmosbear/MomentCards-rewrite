@@ -1,14 +1,12 @@
-import { now } from "svelte/internal"
-
 export class Card {
     constructor(
         public front: string,
         public back: string,
         public dueDateMS: number,
-    ) {}
+    ) { }
 }
 
-export function ms(time?: {days?: number, hours?: number, minutes?: number, seconds?: number}, fromWhenMS = Date.now()) {
+export function ms(time?: { days?: number, hours?: number, minutes?: number, seconds?: number }, fromWhenMS = Date.now()) {
     time = time ?? {}
     let d = time.days ?? 0
     let h = time.hours ?? 0
@@ -30,17 +28,23 @@ export class Deck {
     constructor(
         public name: string,
         public cards: Card[] = [],
-        private dues: Card[] = []
-    ) {}
-    createCard(card: Card) {
+        public dues: Card[] = []
+    ) { }
+    addCard(card: Card) {
         this.cards.push(card)
     }
     updateAndReturnDues(): Card[] {
         this.cards.forEach(card => {
-            if (card.dueDateMS < nowMS() && !this.dues.includes(card)) {
-                this.dues.push(card)
+            if (card.dueDateMS <= nowMS()) {
+                // console.log("this is", this)
+                // console.log(this.dues)
+                if (!this.dues.includes(card)) {
+                    this.dues.push(card)
+                    window.dispatchEvent(new CustomEvent("the due cards changed"))
+                    console.log("ADDED")
+                }
             }
-        }) 
+        })
         return this.dues
     }
 }
